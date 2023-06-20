@@ -5,7 +5,7 @@ import News from './components/News';
 import Newsitem from './components/Newsitem';
 function App() {
   return (
-    <div>
+    <div style={{backgroundColor:'#198754'}}>
       <NavBar/>
      <News/>
     </div>
