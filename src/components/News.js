@@ -7,16 +7,49 @@ export class News extends Component {
         super();
         this.state = {
             articles:[],
-            loading:false
+            loading:false,
+            page:1
+
         }
+    }
+
+    handleNextClick = async() =>
+    {
+
+        if(this.state.page + 1 > Math.ceil(this.state.totalResults/20))
+        {
+
+        }
+        else{
+          let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=825a41c8153b4055ba517e9472704776&page=${this.state.page +1}&pageSize=20`;
+          let data = await fetch(url);
+          let parsedData = await data.json();
+          this.setState({
+            page : this.state.page + 1,
+            articles : parsedData.articles
+           })
+        }
+      
+      
+
+    }
+    handlePrevClick = async () =>
+    {
+      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=825a41c8153b4055ba517e9472704776&page=${this.state.page -1}&pageSize=20`;
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      this.setState({
+        page : this.state.page - 1,
+        articles : parsedData.articles
+       })
     }
 
     async componentDidMount()
     {
-      let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=825a41c8153b4055ba517e9472704776";
+      let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=825a41c8153b4055ba517e9472704776&pageSize=20";
       let data = await fetch(url);
       let parsedData = await data.json();
-      this.setState({articles : parsedData.articles})
+      this.setState({articles : parsedData.articles,totalResults:parsedData.totalResults})
     }
   render() {
     return (
@@ -32,7 +65,10 @@ export class News extends Component {
         })}
            
         </div>
-       
+       <div className='container d-flex justify-content-between'>
+       <button disabled={this.state.page<=1} type="button" onClick={this.handlePrevClick } className="btn btn-dark"> &larr;Previous</button>
+       <button type="button" onClick={this.handleNextClick } className="btn btn-dark">Next &rarr; </button>
+       </div>
       </div>
     )
   }
