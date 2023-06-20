@@ -7,7 +7,7 @@ function App() {
   return (
     <div style={{backgroundColor:'#198754'}}>
       <NavBar/>
-     <News/>
+     <News pageSize={20}/>
     </div>
   );
 }
