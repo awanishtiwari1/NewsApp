@@ -7,7 +7,7 @@ function App() {
   return (
     <div style={{backgroundColor:'#198754'}}>
       <NavBar/>
-     <News pageSize={20}/>
+     <News pageSize={20} country="in" category="sports"/> 
     </div>
   );
 }
