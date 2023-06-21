@@ -3,7 +3,7 @@ import Newsitem from './Newsitem'
 import Spinner from './Spinner';
 
 import PropTypes from 'prop-types'
-
+import {Routes,Route,BrowserRouter} from 'react-router-dom'
 export class News extends Component {
   static defaultProps = {
     country:"in",
@@ -75,8 +75,9 @@ export class News extends Component {
     }
   render() {
     return (
+  
       <div className='container my-3'>
-        <h1 className='text-center' style={{margin:'35px:0px'}}>News Headlines </h1>
+        <h1 className='text-center' style={{margin:'20px:0px' ,color:'yellow'}}>News Headlines </h1>
         {this.state.loading && <Spinner/>}
         <div className='row my-3'>
 
@@ -92,6 +93,7 @@ export class News extends Component {
        <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" onClick={this.handleNextClick } className="btn btn-dark">Next &rarr; </button>
        </div>
       </div>
+   
     )
   }
 }
