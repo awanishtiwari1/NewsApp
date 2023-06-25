@@ -3,12 +3,12 @@ import './App.css';
 import About from './components/About';
 import NavBar from './components/NavBar';
 import News from './components/News';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter , Route, Routes } from 'react-router-dom';
 function App() {
 
   
   return (
-    <BrowserRouter>
+    <HashRouter basename='/'>
     <div >
       <NavBar/>
       <Routes>
@@ -25,7 +25,7 @@ function App() {
       </Routes>
      
     </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
